@@ -14,7 +14,7 @@ import Foundation
 
 struct BackgroundView: View {
     var body: some View {
-        LinearGradient(colors: [.red, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient(colors: [.accentColor, .accentColor], startPoint: .top, endPoint: .bottom)
             .ignoresSafeArea()
     }
 }

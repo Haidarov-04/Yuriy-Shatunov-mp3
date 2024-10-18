@@ -33,32 +33,40 @@ struct songsView: View {
                 BackgroundView()
                 //            ScrollView{
                 
-                List{
+                ScrollView{
                     ForEach(vm.songs.indices, id: \.self) { i in
-                        SongCell(song: vm.songs[i])
-                            .onTapGesture {
-                                
-                                isPresented = true
-                                
-                                
-                                audioPlayer.playSound(named: vm.songs[i].name)
-                                
-                                
-                                if vm.songs[i].name == audioPlayer.soundFiles.songs[i].name {
-                                    audioPlayer.currentTrackIndex = i
-                                }
+                        HStack{
+                            SongCell(song: vm.songs[i])
+                                .onTapGesture {
+                                    
+                                    isPresented = true
+                                    
+                                    
+                                    audioPlayer.playSound(named: vm.songs[i].name)
+                                    
+                                    
+                                    if vm.songs[i].name == audioPlayer.soundFiles.songs[i].name {
+                                        audioPlayer.currentTrackIndex = i
+                                    }
 
-                                
-                                
-                                
-                                
-                                playing = true
-                                
-                              
-                            }
-                            .onAppear(){
-                                currentSong = vm.songs[i].name
-                            }
+                                   
+                                    playing = true
+                                    
+                                  
+                                }
+                                .onAppear(){
+                                    currentSong = vm.songs[i].name
+                                }
+                        }
+                        .padding()
+                        .overlay(
+                                  Rectangle()
+                                      .frame(height: 2)
+                                    .foregroundColor(.gray.opacity(0.4))
+                                      .padding(.top, 50),
+                                  alignment: .bottom
+                              )
+                    
                     }
 
                             
@@ -151,6 +159,7 @@ struct songsView: View {
                                                         .shadow(color: .black, radius: 20)
                                                 }
                                             }
+                                            .foregroundColor(.white)
                                             
                                             
                                             
@@ -264,6 +273,12 @@ struct songsView: View {
                                                 
                                             }
                                             
+                                            HStack{
+                                                
+                                                
+                                              
+                                            }
+                                            
 
                                         }
                                         .onAppear {
@@ -284,7 +299,7 @@ struct songsView: View {
                                     
                         
                 }
-                .background( LinearGradient(colors: [.green, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
+                .background( LinearGradient(colors: [.purple, .accentColor], startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea())
                 .presentationDetents([.height(height), .large])
                 .presentationCornerRadius(20)

@@ -12,7 +12,7 @@ struct Splash: View {
         
         ZStack {
             Color.blue
-            Text("Haidarov's demo")
+            Text("Юрий Шатунов")
                 
                 .font(.largeTitle)
                 .foregroundColor(.white)

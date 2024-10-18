@@ -29,9 +29,22 @@
 		04F73B322CC0155E00279310 /* Yuriy ShatunovUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Yuriy ShatunovUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		046556082CC2DB3800EF49C0 /* Exceptions for "Yuriy Shatunov" folder in "Yuriy Shatunov" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Yuriy-Shatunov-Info.plist",
+			);
+			target = 04F73B172CC0155B00279310 /* Yuriy Shatunov */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		04F73B1A2CC0155B00279310 /* Yuriy Shatunov */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				046556082CC2DB3800EF49C0 /* Exceptions for "Yuriy Shatunov" folder in "Yuriy Shatunov" target */,
+			);
 			path = "Yuriy Shatunov";
 			sourceTree = "<group>";
 		};
@@ -399,6 +412,7 @@
 				DEVELOPMENT_TEAM = QGM7999C9H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Yuriy-Shatunov-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +442,7 @@
 				DEVELOPMENT_TEAM = QGM7999C9H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Yuriy-Shatunov-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

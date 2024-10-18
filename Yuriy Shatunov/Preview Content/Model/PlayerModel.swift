@@ -16,6 +16,8 @@ class AudioPlayer: ObservableObject {
     
     @Published var musicCurrentTime: TimeInterval = 0.0
     @Published var musicDuration: TimeInterval = 0.0
+    
+    @State var volume: Float = 0.5
 
     @State  var timer: Timer?
     
@@ -26,6 +28,16 @@ class AudioPlayer: ObservableObject {
     
 
     func playSound(named soundName: String) {
+        
+        
+        
+        do {
+               
+               try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+               try AVAudioSession.sharedInstance().setActive(true)
+           } catch {
+               print("Ошибка настройки аудиосессии: \(error.localizedDescription)")
+           }
        
         if let bundlePath = Bundle.main.resourcePath {
             do {
@@ -49,15 +61,16 @@ class AudioPlayer: ObservableObject {
         do {
             
             player = try AVAudioPlayer(contentsOf: url)
+            player?.volume = Float(volume)
             player?.prepareToPlay()
             player?.play()
             
             if let player = player {
-                       // Устанавливаем продолжительность трека
+                       
                        musicDuration = player.duration
                        print("Продолжительность трека: \(musicDuration)")
                        
-                       // Запускаем таймер для отслеживания времени
+                       
                        startMusicTimer()
                    }
             
@@ -70,29 +83,18 @@ class AudioPlayer: ObservableObject {
     
     
     
-//    func startMusicTimer() {
-//        timer?.invalidate()
-//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-//            if let player = self.player {
-//                self.musicCurrentTime = player.currentTime
-//                if self.musicCurrentTime >= self.musicDuration {
-//                    self.timer?.invalidate()
-//                }
-//            }
-//        }
-//    }
     
     func startMusicTimer() {
-        // Останавливаем предыдущий таймер
+        
         timer?.invalidate()
 
-        // Создаем новый таймер
+        
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             if let player = self.player {
-                // Логирование текущего времени
+                
                
 
-                // Обновляем текущее время воспроизведения
+                
                 self.musicCurrentTime = player.currentTime
                 
                 while self.musicCurrentTime == self.musicDuration{
@@ -199,6 +201,9 @@ class AudioPlayer: ObservableObject {
         }
         
     }
+    
+    
+
 }
 
 
