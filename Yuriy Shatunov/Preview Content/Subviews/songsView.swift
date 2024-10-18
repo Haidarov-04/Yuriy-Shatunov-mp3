@@ -18,7 +18,7 @@ struct songsView: View {
     
     let song: SongModel
     
-    @State var currentSong = ""
+    @State var currentSong = "Седач ночь"
     
     
 
@@ -51,12 +51,10 @@ struct songsView: View {
 
                                    
                                     playing = true
-                                    
+                                    currentSong = vm.songs[i].name
                                   
                                 }
-                                .onAppear(){
-                                    currentSong = vm.songs[i].name
-                                }
+                                
                         }
                         .padding()
                         .overlay(
