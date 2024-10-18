@@ -18,7 +18,7 @@ struct songsView: View {
     
     let song: SongModel
     
-    @State var currentSong = "Седач ночь"
+    @State var currentSong = "Седая ночь"
     
     
 
