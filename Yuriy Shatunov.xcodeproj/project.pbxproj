@@ -29,22 +29,9 @@
 		04F73B322CC0155E00279310 /* Yuriy ShatunovUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Yuriy ShatunovUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		046556082CC2DB3800EF49C0 /* Exceptions for "Yuriy Shatunov" folder in "Yuriy Shatunov" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Yuriy-Shatunov-Info.plist",
-			);
-			target = 04F73B172CC0155B00279310 /* Yuriy Shatunov */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		04F73B1A2CC0155B00279310 /* Yuriy Shatunov */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				046556082CC2DB3800EF49C0 /* Exceptions for "Yuriy Shatunov" folder in "Yuriy Shatunov" target */,
-			);
 			path = "Yuriy Shatunov";
 			sourceTree = "<group>";
 		};

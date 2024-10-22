@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import MediaPlayer
+import AVFoundation
+import UIKit
+
 
 struct songsView: View {
     @StateObject var vm = ViewModel()
+    
     @State var isPresented: Bool = true
     @State var height: CGFloat = 80
     
@@ -21,7 +26,10 @@ struct songsView: View {
     @State var currentSong = "Седая ночь"
     
     
-
+    
+   
+    
+    
    
 
     
@@ -55,6 +63,10 @@ struct songsView: View {
                                   
                                 }
                                 
+                        }
+                        .onAppear{
+                            audioPlayer.startMusicTimer()
+                            
                         }
                         .padding()
                         .overlay(
@@ -94,16 +106,16 @@ struct songsView: View {
                                                 }){
                                                     Image(systemName: "chevron.down")
                                                     
-                                                }.frame(width: 40, height: 40, alignment: .topLeading)
+                                                }
+                                                .frame(width: 40, height: 40, alignment: .topLeading)
                                                 Spacer()
                                             }
                                                 
                                             
                                             
                                         }else{
-                                        
                                         HStack{
-                                            Image("sh")
+                                            Image("sh1")
                                                 .resizable()
                                                 .frame(width: 50, height: 50)
                                                 .cornerRadius(50)
@@ -163,7 +175,7 @@ struct songsView: View {
                                             
                                             
                                             VStack{
-                                                Text("03:20")
+                                                Text(audioPlayer.formatTime(audioPlayer.musicDuration))
                                             }
                                             
                                         }
@@ -184,7 +196,7 @@ struct songsView: View {
                                         VStack{
                                             
                                             
-                                            Image("sh")
+                                            Image("sh1")
                                                 .resizable()
                                                 .frame(width: 200 , height: 200)
                                                 .cornerRadius(40)
@@ -203,6 +215,50 @@ struct songsView: View {
                                             
                                             
                                             
+                                            
+                                            VStack {
+                                                HStack {
+                                                    Slider(value: Binding(
+                                                        get: {
+                                                            audioPlayer.musicCurrentTime
+                                                        },
+                                                        set: { (newValue) in
+                                                            audioPlayer.musicCurrentTime = newValue
+                                                            audioPlayer.player?.currentTime = newValue
+                                                        }
+                                                    ), in: 0...audioPlayer.musicDuration)
+                                                    .tint(.white)
+                                                    .cornerRadius(10)
+                                                    
+                                                    
+                                                    
+                                                    .padding(.top)
+                                                    
+                                                }
+                                                
+                                                
+                                                HStack{
+                                                   
+                                                }
+                                                
+                                                HStack {
+                                                    Text(audioPlayer.formatTime(audioPlayer.musicCurrentTime))
+                                                    Spacer()
+                                                    Text(audioPlayer.formatTime(audioPlayer.musicDuration))
+                                                        .onAppear {
+                                                            audioPlayer.startMusicTimer()
+                                                        }
+                                                    
+                                                }
+                                                
+                                                
+                                             
+
+                                                
+                                                
+                                                
+                                            }
+                                            
                                             HStack {
                                                 
                                                 Button(action:{
@@ -210,7 +266,7 @@ struct songsView: View {
                                                     currentSong = audioPlayer.songName()
                                                     playing = true
                                                 }){
-                                                   Image(systemName: "backward.end.alt")
+                                                   Image(systemName: "backward.fill")
                                                         .foregroundColor(.white)
                                                         .font(.largeTitle)
                                                         .shadow(color: .black, radius: 20)
@@ -222,7 +278,7 @@ struct songsView: View {
                                                     playing.toggle()
                                                     audioPlayer.startMusicTimer()
                                                 }) {
-                                                    Image(systemName:  playing ? "pause" :"play")
+                                                    Image(systemName:  playing ? "pause.fill" :"play.fill")
                                                         .foregroundColor(.white)
                                                         .font(.largeTitle)
                                                         .shadow(color: .black, radius: 20)
@@ -237,7 +293,7 @@ struct songsView: View {
                                                     playing = true
                                                     
                                                 }){
-                                                    Image(systemName: "forward.end.alt")
+                                                    Image(systemName: "forward.fill")
                                                         .foregroundColor(.white)
                                                         .font(.largeTitle)
                                                         .shadow(color: .black, radius: 20)
@@ -245,39 +301,43 @@ struct songsView: View {
                                                 
                                             }
                                             
-                                            .padding(.horizontal)
-                                            .padding(.top)
+                                            .padding()
+                                            
+
+                                     
                                             
                                             HStack {
-                                                Text(audioPlayer.formatTime(audioPlayer.musicCurrentTime))
+                                                VolumeSliderView()
                                                 
+                                                    .frame(width: 300, height: 50)
+                                                    .padding()
+                                                    .cornerRadius(10)
+                                            }
+                                            
+                                            
                                                 
-                                                Slider(value: Binding(
-                                                    get: {
-                                                        audioPlayer.musicCurrentTime
-                                                    },
-                                                    set: { (newValue) in
-                                                        audioPlayer.musicCurrentTime = newValue
-                                                        audioPlayer.player?.currentTime = newValue
-                                                    }
-                                                ), in: 0...audioPlayer.musicDuration)
-                                                .padding()
-
-                                                Text(audioPlayer.formatTime(audioPlayer.musicDuration))
-                                                    .onAppear {
-                                                        audioPlayer.startMusicTimer()
-                                                    }
+                                            
+                                            HStack {
+                                                RouteButtonView()
+                                                    .frame(width: 50, height: 50)
+                                                    .padding(.horizontal)
+                                                    .cornerRadius(10)
                                                 
+                                                Spacer()
+                                                Button(action: {
+                                                    self.height = 80
+                                                }){
+                                                    Image(systemName: "list.bullet")
+                                                        .foregroundColor(.red)
+                                                        .font(.system(size: 30))
+                                                        .padding(.horizontal)
+                                                    
+                                                }
                                                 
                                             }
                                             
-                                            HStack{
-                                                
-                                                
-                                              
-                                            }
                                             
-
+                                          
                                         }
                                         .onAppear {
                                             

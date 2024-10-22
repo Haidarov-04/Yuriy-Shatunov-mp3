@@ -6,6 +6,10 @@
 //
 import SwiftUI
 import AVFoundation
+import MediaPlayer
+import AVKit
+
+
 
 class AudioPlayer: ObservableObject {
     var player: AVAudioPlayer?
@@ -17,16 +21,17 @@ class AudioPlayer: ObservableObject {
     @Published var musicCurrentTime: TimeInterval = 0.0
     @Published var musicDuration: TimeInterval = 0.0
     
-    @State var volume: Float = 0.5
+   
 
     @State  var timer: Timer?
     
   
    
     
+  
     
     
-
+    //play music
     func playSound(named soundName: String) {
         
         
@@ -61,7 +66,7 @@ class AudioPlayer: ObservableObject {
         do {
             
             player = try AVAudioPlayer(contentsOf: url)
-            player?.volume = Float(volume)
+            
             player?.prepareToPlay()
             player?.play()
             
@@ -83,7 +88,7 @@ class AudioPlayer: ObservableObject {
     
     
     
-    
+    // starting music
     func startMusicTimer() {
         
         timer?.invalidate()
@@ -115,6 +120,8 @@ class AudioPlayer: ObservableObject {
 
    
     
+    
+    //format time
     func formatTime(_ time: TimeInterval) -> String {
             let minutes = Int(time) / 60
             let seconds = Int(time) % 60
@@ -130,7 +137,7 @@ class AudioPlayer: ObservableObject {
   
     
     
-    
+    //update duration
     func updateTimeAndDuration() {
         if let player = player {
             musicCurrentTime = player.currentTime
@@ -146,6 +153,8 @@ class AudioPlayer: ObservableObject {
     func stopSound() {
         player?.pause()
         print("stopped")
+//        stopUpdatingNowPlayingInfo() 
+        self.isPlaying = false
     }
     
     
@@ -156,8 +165,12 @@ class AudioPlayer: ObservableObject {
     //play current track
     func playCurrentTrack() {
         if let player = player, !player.isPlaying {
+//            configureAudioSession()
                player.play()
+//            startUpdatingNowPlayingInfo()
                 startMusicTimer()
+            self.isPlaying = true
+//            setupRemoteCommandCenter()
             
             
            } else {
@@ -204,7 +217,120 @@ class AudioPlayer: ObservableObject {
     
     
 
+//    func configureAudioSession() {
+//        do {
+//            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+//            try AVAudioSession.sharedInstance().setActive(true)
+//        } catch {
+//            print("Ошибка активации AVAudioSession: \(error)")
+//        }
+//    }
+//
+//    
+//    
+// 
+//    
+//    
+//    
+//    
+//    func setupNowPlayingInfo(with title: String, artist: String) {
+//        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+//        var nowPlayingInfo = [String: Any]()
+//        nowPlayingInfo[MPMediaItemPropertyTitle] = title
+//        nowPlayingInfo[MPMediaItemPropertyArtist] = artist
+//        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.musicCurrentTime
+//        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.musicDuration
+//        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
+//        nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+//    }
+//    
+//    func setupRemoteCommandCenter() {
+//        let commandCenter = MPRemoteCommandCenter.shared()
+//        
+//        commandCenter.playCommand.addTarget { event in
+//            self.playCurrentTrack()
+//            return .success
+//        }
+//        
+//        commandCenter.pauseCommand.addTarget { event in
+//            self.stopSound()
+//            return .success
+//        }
+//        
+//        commandCenter.togglePlayPauseCommand.addTarget { event in
+//            if self.isPlaying {
+//                self.stopSound()
+//            } else {
+//                self.playCurrentTrack()
+//            }
+//            return .success
+//        }
+//    }
+//    
+//    
+//   
+//
+//    func startUpdatingNowPlayingInfo() {
+//        timer?.invalidate()
+//        
+//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+//            guard let self = self else { return }
+//            self.updateNowPlayingElapsedTime()
+//        }
+//    }
+//
+//    func updateNowPlayingElapsedTime() {
+//        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+//
+//        if var nowPlayingInfo = nowPlayingInfoCenter.nowPlayingInfo {
+//            nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.musicCurrentTime
+//            nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+//        }
+//    }
+//
+//    func stopUpdatingNowPlayingInfo() {
+//        timer?.invalidate()
+//        timer = nil
+//    }
+//
+//    
+//    
+//    
+//    
+    
+    
+
 }
+
+//volume slider
+struct VolumeSliderView: UIViewRepresentable {
+    func makeUIView(context: Context) -> MPVolumeView {
+        let volumeView = MPVolumeView()
+        volumeView.showsVolumeSlider = true
+        volumeView.tintColor = .white
+        return volumeView
+    }
+    
+    func updateUIView(_ uiView: MPVolumeView, context: Context) {
+        
+    }
+}
+
+
+
+//airPlay
+struct RouteButtonView: UIViewRepresentable {
+    func makeUIView(context: Context) -> AVRoutePickerView {
+        let routePickerView = AVRoutePickerView()
+        routePickerView.tintColor = .red
+        return routePickerView
+    }
+    
+    func updateUIView(_ uiView: AVRoutePickerView, context: Context) {
+        
+    }
+}
+
 
 
 

@@ -14,7 +14,7 @@ struct SongCell: View {
     @StateObject var audioPlayer = AudioPlayer()
     var body: some View {
         HStack{
-            Image("sh")
+            Image("sh1")
                 .resizable()
                 .frame(width: 50, height: 50)
                 .cornerRadius(50)

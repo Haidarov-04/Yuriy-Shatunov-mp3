@@ -8,17 +8,44 @@
 import SwiftUI
 
 struct Splash: View {
+    
+    @State var text = false
     var body: some View {
-        
-        ZStack {
-            Color.blue
-            Text("Юрий Шатунов")
+        GeometryReader{ geometry in
+            
+            ZStack {
+                Image("sh5")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
                 
-                .font(.largeTitle)
-                .foregroundColor(.white)
                 
+                
+                
+                
+                
+                if text{
+                    Text("Юрий Шатунов")
+                    
+                        .foregroundColor(.orange)
+                        .font(.system(size: 50))
+                        .bold()
+                        .padding()
+                    
+                }
+                
+            }
+
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .onAppear{
+                DispatchQueue.main
+                    .asyncAfter(deadline: .now() + 1.5){
+                        withAnimation{
+                            self.text = true
+                        }
+                    }
+            }
         }
-        .ignoresSafeArea(.all)
+        .ignoresSafeArea()
         
     }
 }
