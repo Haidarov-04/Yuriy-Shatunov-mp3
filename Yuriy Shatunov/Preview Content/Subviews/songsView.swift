@@ -25,11 +25,7 @@ struct songsView: View {
     
     @State var currentSong = "Седая ночь"
     
-    func updateCurrentSong() {
-            currentSong = audioPlayer.songName()
-        print(currentSong)
-        }
-    
+   
    
     
     
@@ -42,7 +38,7 @@ struct songsView: View {
         NavigationStack{
             ZStack{
                 BackgroundView()
-                //            ScrollView{
+                
                 
                 ScrollView{
                     ForEach(vm.songs.indices, id: \.self) { i in
@@ -88,7 +84,7 @@ struct songsView: View {
                 
                 
                 .listStyle(.plain)
-                //            }
+                
             }
             
             
@@ -126,7 +122,7 @@ struct songsView: View {
                                             
                                             
                                             VStack{
-                                                audioPlayer.songNamee()
+                                                audioPlayer.songName()
                                                 
                                             }
                                             Spacer()
@@ -136,13 +132,13 @@ struct songsView: View {
                                             HStack {
                                                 Button(action:{
                                                     audioPlayer.backSound()
-//                                                    currentSong = audioPlayer.songName()
+
                                                     playing = true
                                                     
                                                 }){
                                                     
                                                     
-                                                    Image(systemName: "backward.end.alt")
+                                                    Image(systemName: "backward")
                                                         .shadow(color: .black, radius: 20)
                                                 }
                                                 
@@ -164,11 +160,11 @@ struct songsView: View {
                                                 Button(action:{
                                                     audioPlayer.nextSound()
                                                     
-//                                                    currentSong = audioPlayer.songName()
+
                                                     playing = true
                                                 }){
                                                     
-                                                    Image(systemName: "forward.end.alt")
+                                                    Image(systemName: "forward")
                                                         .shadow(color: .black, radius: 20)
                                                 }
                                             }
@@ -209,7 +205,7 @@ struct songsView: View {
                                             
                                             
                                             
-                                            audioPlayer.songNamee()
+                                            audioPlayer.songName()
                                                 .font(.largeTitle)
                                                 
                                             Text("Юрий Шатунов")
@@ -261,7 +257,7 @@ struct songsView: View {
                                                 
                                                 Button(action:{
                                                     audioPlayer.backSound()
-//                                                    currentSong = audioPlayer.songName()
+                                                    
                                                     playing = true
                                                 }){
                                                    Image(systemName: "backward.fill")
@@ -288,7 +284,7 @@ struct songsView: View {
                                                 Button(action:{
                                                     audioPlayer.nextSound()
                                                     
-//                                                    currentSong = audioPlayer.songName()
+                                                    
                                                     playing = true
                                                     
                                                 }){

@@ -144,10 +144,7 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     
     
-    func songName()->String{
-            return soundFiles.songs[currentTrackIndex].name
-        
-    }
+   
        
     //format time
        func formatTime(_ time: TimeInterval) -> String {
@@ -157,7 +154,8 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
            }
     
     
-    func songNamee()->some View{
+    //song name
+    func songName()->some View{
         Text(soundFiles.songs[currentTrackIndex].name)
             
     }
