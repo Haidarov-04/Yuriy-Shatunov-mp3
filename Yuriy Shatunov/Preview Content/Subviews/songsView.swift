@@ -25,7 +25,10 @@ struct songsView: View {
     
     @State var currentSong = "Седая ночь"
     
-    
+    func updateCurrentSong() {
+            currentSong = audioPlayer.songName()
+        print(currentSong)
+        }
     
    
     
@@ -60,14 +63,12 @@ struct songsView: View {
                                    
                                     playing = true
                                     currentSong = vm.songs[i].name
-                                  
+                                    
                                 }
                                 
+                                
                         }
-                        .onAppear{
-                            audioPlayer.startMusicTimer()
-                            
-                        }
+                        
                         .padding()
                         .overlay(
                                   Rectangle()
@@ -89,6 +90,8 @@ struct songsView: View {
                 .listStyle(.plain)
                 //            }
             }
+            
+            
             .sheet(isPresented: $isPresented){
                 NavigationView{
                    
@@ -123,7 +126,7 @@ struct songsView: View {
                                             
                                             
                                             VStack{
-                                                Text(currentSong)
+                                                audioPlayer.songNamee()
                                                 
                                             }
                                             Spacer()
@@ -133,7 +136,7 @@ struct songsView: View {
                                             HStack {
                                                 Button(action:{
                                                     audioPlayer.backSound()
-                                                    currentSong = audioPlayer.songName()
+//                                                    currentSong = audioPlayer.songName()
                                                     playing = true
                                                     
                                                 }){
@@ -161,7 +164,7 @@ struct songsView: View {
                                                 Button(action:{
                                                     audioPlayer.nextSound()
                                                     
-                                                    currentSong = audioPlayer.songName()
+//                                                    currentSong = audioPlayer.songName()
                                                     playing = true
                                                 }){
                                                     
@@ -206,8 +209,9 @@ struct songsView: View {
                                             
                                             
                                             
-                                            Text(currentSong)
+                                            audioPlayer.songNamee()
                                                 .font(.largeTitle)
+                                                
                                             Text("Юрий Шатунов")
                                                 .font(.title)
                                             
@@ -225,10 +229,12 @@ struct songsView: View {
                                                         set: { (newValue) in
                                                             audioPlayer.musicCurrentTime = newValue
                                                             audioPlayer.player?.currentTime = newValue
-                                                        }
+                                                                                                                    }
                                                     ), in: 0...audioPlayer.musicDuration)
                                                     .tint(.white)
                                                     .cornerRadius(10)
+                                                    
+                                                    
                                                     
                                                     
                                                     
@@ -237,25 +243,17 @@ struct songsView: View {
                                                 }
                                                 
                                                 
-                                                HStack{
-                                                   
-                                                }
+                                               
                                                 
                                                 HStack {
                                                     Text(audioPlayer.formatTime(audioPlayer.musicCurrentTime))
                                                     Spacer()
                                                     Text(audioPlayer.formatTime(audioPlayer.musicDuration))
-                                                        .onAppear {
-                                                            audioPlayer.startMusicTimer()
-                                                        }
+                                                    
+                                                      
+                                                      
                                                     
                                                 }
-                                                
-                                                
-                                             
-
-                                                
-                                                
                                                 
                                             }
                                             
@@ -263,7 +261,7 @@ struct songsView: View {
                                                 
                                                 Button(action:{
                                                     audioPlayer.backSound()
-                                                    currentSong = audioPlayer.songName()
+//                                                    currentSong = audioPlayer.songName()
                                                     playing = true
                                                 }){
                                                    Image(systemName: "backward.fill")
@@ -276,7 +274,8 @@ struct songsView: View {
                                                 Button(action: {
                                                     playing ? audioPlayer.stopSound() : audioPlayer.playCurrentTrack()
                                                     playing.toggle()
-                                                    audioPlayer.startMusicTimer()
+                                                    
+                                                    
                                                 }) {
                                                     Image(systemName:  playing ? "pause.fill" :"play.fill")
                                                         .foregroundColor(.white)
@@ -289,7 +288,7 @@ struct songsView: View {
                                                 Button(action:{
                                                     audioPlayer.nextSound()
                                                     
-                                                    currentSong = audioPlayer.songName()
+//                                                    currentSong = audioPlayer.songName()
                                                     playing = true
                                                     
                                                 }){
@@ -297,6 +296,8 @@ struct songsView: View {
                                                         .foregroundColor(.white)
                                                         .font(.largeTitle)
                                                         .shadow(color: .black, radius: 20)
+                                                }.onTapGesture {
+                                                    
                                                 }
                                                 
                                             }
@@ -339,16 +340,15 @@ struct songsView: View {
                                             
                                           
                                         }
-                                        .onAppear {
-                                            
-                                            
-                                        }
+                                        
                                     }
                                     
                                     
                                     
                                     Spacer()
                                 }
+                                
+                                
                                 
                                 .padding()
                                 
@@ -369,6 +369,8 @@ struct songsView: View {
             
                     
         }
+        
+        
         
 
             .toolbar{

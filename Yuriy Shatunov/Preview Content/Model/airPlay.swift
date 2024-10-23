@@ -6,13 +6,19 @@
 //
 
 import SwiftUI
+import AVFoundation
+import MediaPlayer
+import AVKit
 
-struct airPlay: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//airPlay
+struct RouteButtonView: UIViewRepresentable {
+    func makeUIView(context: Context) -> AVRoutePickerView {
+        let routePickerView = AVRoutePickerView()
+        routePickerView.tintColor = .red
+        return routePickerView
     }
-}
-
-#Preview {
-    airPlay()
+    
+    func updateUIView(_ uiView: AVRoutePickerView, context: Context) {
+        
+    }
 }

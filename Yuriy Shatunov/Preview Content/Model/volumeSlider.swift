@@ -6,13 +6,23 @@
 //
 
 import SwiftUI
+import AVFoundation
+import MediaPlayer
+import AVKit
 
-struct volumeSlider: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//volume slider
+struct VolumeSliderView: UIViewRepresentable {
+    func makeUIView(context: Context) -> MPVolumeView {
+        let volumeView = MPVolumeView()
+        volumeView.showsVolumeSlider = true
+        volumeView.tintColor = .white
+        return volumeView
+    }
+    
+    func updateUIView(_ uiView: MPVolumeView, context: Context) {
+        
     }
 }
 
-#Preview {
-    volumeSlider()
-}
+
+
