@@ -174,9 +174,13 @@ struct songsView: View {
                                             
                                             
                                             VStack{
-                                                Text(audioPlayer.formatTime(audioPlayer.musicDuration))
+                                                Text(audioPlayer.formatTime(audioPlayer.musicDuration-audioPlayer.musicCurrentTime))
+                                                
                                             }
                                             
+                                        }
+                                        .onAppear{
+                                            audioPlayer.durationMusic()
                                         }
                                         .ignoresSafeArea()
                                         .listRowBackground(Color.clear)

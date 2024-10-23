@@ -159,6 +159,11 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         Text(soundFiles.songs[currentTrackIndex].name)
             
     }
+    
+    func durationMusic(){
+        playCurrentTrack()
+        stopSound()
+    }
 }
 
 
