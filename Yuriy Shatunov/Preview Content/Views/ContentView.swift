@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var splash = true
     
+
     
     var body: some View {
         
@@ -23,6 +24,9 @@ struct ContentView: View {
                     Splash()
                         .transition(.opacity)
                         .animation(.easeOut(duration: 1.5))
+                        .onAppear{
+                            
+                        }
                     
                 }
                 .onAppear{
@@ -30,8 +34,11 @@ struct ContentView: View {
                         .asyncAfter(deadline: .now() + 5){
                             withAnimation{
                                 self.splash = false
+                                
+                                
                             }
                         }
+                   
                 }
                 
             }else{

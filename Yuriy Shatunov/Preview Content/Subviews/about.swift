@@ -16,6 +16,7 @@ struct about: View {
             
             VStack {
                 Spacer()
+                Spacer()
                 VStack{
                     Text("Music Player")
                     Text("Юрий Шатуров")
@@ -24,7 +25,10 @@ struct about: View {
                     .padding()
                     .foregroundColor(.white)
                 Spacer()
+                Spacer()
+                Spacer()
                 Text("Haidarov's Project")
+                Spacer()
                     
             }
         }
@@ -32,5 +36,5 @@ struct about: View {
 }
 
 #Preview {
-    settings()
+    about()
 }

@@ -23,11 +23,11 @@ struct mainView: View {
                             .toolbarBackground(.visible, for: .tabBar)
                         
                         
-                        settings()
+                        about()
                             .tabItem{
+                                Image(systemName: "book.pages.fill")
                                 
-                                Image(systemName: "gear")
-                                Text("Settings")
+                                Text("About")
                             }
                         
                     }

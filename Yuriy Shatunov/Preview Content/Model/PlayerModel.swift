@@ -37,6 +37,17 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
             try AVAudioSession.sharedInstance().setActive(true)
+            
+            var nowPlayingInfo = [String: Any]()
+            nowPlayingInfo[MPMediaItemPropertyTitle] = songName()
+                  nowPlayingInfo[MPMediaItemPropertyArtist] = "Юрий Шатунов"
+                  
+                  // Add more metadata like album art, duration, etc.
+                  MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+                  
+                  // Enable remote control events
+                  UIApplication.shared.beginReceivingRemoteControlEvents()
+                  setupRemoteTransportControls()
         } catch {
             print("Ошибка настройки аудиосессии: \(error.localizedDescription)")
         }
@@ -60,6 +71,43 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
             print("Ошибка при создании плеера: \(error.localizedDescription)")
         }
     }
+    
+    
+    
+    
+    
+    
+    private func setupRemoteTransportControls() {
+            let commandCenter = MPRemoteCommandCenter.shared()
+            
+            commandCenter.playCommand.addTarget { [unowned self] event in
+                if self.player?.rate == 0.0 {
+                    self.playCurrentTrack()
+                    return .success
+                }
+                return .commandFailed
+            }
+            
+            commandCenter.pauseCommand.addTarget { [unowned self] event in
+                if self.player?.rate == 1.0 {
+                    self.stopSound()
+                    return .success
+                }
+                return .commandFailed
+            }
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // Start music timer
     func startMusicTimer() {
@@ -117,12 +165,15 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
             let soundName = soundFiles.songs[currentTrackIndex].name
             playSound(named: soundName)
         }
+        
+        self.isPlaying = true
     }
 
     // Stop playing
     func stopSound() {
         player?.pause()
         stopMusicTimer()
+        self.isPlaying = false
         
     }
     

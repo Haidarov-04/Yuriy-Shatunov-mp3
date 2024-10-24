@@ -14,8 +14,12 @@ import Foundation
 
 struct BackgroundView: View {
     var body: some View {
-        LinearGradient(colors: [.accentColor, .accentColor], startPoint: .top, endPoint: .bottom)
+//        LinearGradient(colors: [.accentColor, .accentColor], startPoint: .top, endPoint: .bottom)
+        
+        Image("sh4")
+            .resizable()
             .ignoresSafeArea()
+            .blur(radius: 20)
     }
 }
 

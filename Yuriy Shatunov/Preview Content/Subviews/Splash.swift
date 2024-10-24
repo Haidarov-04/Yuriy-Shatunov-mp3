@@ -10,6 +10,7 @@ import SwiftUI
 struct Splash: View {
     
     @State var text = false
+    
     var body: some View {
         GeometryReader{ geometry in
             
@@ -17,6 +18,7 @@ struct Splash: View {
                 Image("sh5")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .blur(radius: text ? 3: 0)
                 
                 
                 
@@ -31,6 +33,7 @@ struct Splash: View {
                         .bold()
                         .padding()
                     
+                    
                 }
                 
             }
@@ -41,6 +44,9 @@ struct Splash: View {
                     .asyncAfter(deadline: .now() + 1.5){
                         withAnimation{
                             self.text = true
+                                
+                            
+                                
                         }
                     }
             }
