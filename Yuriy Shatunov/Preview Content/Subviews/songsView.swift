@@ -28,7 +28,8 @@ struct songsView: View {
    
     @State var dur = true
     
-    
+    @State var currentDetend:PresentationDetent = .medium
+    @State private var isLargeDetent = false
    
 
     
@@ -115,7 +116,7 @@ struct songsView: View {
                             
                             HStack {
                                 
-                                if !(height==770){
+                                if !isLargeDetent{
                                     HStack{
                                         Image("sh1")
                                             .resizable()
@@ -186,8 +187,8 @@ struct songsView: View {
                                     .ignoresSafeArea()
                                     .listRowBackground(Color.clear)
                                     .onTapGesture {
+                                        isLargeDetent = true
                                         height = 770
-                                        
                                     }
                                 }
                             }
@@ -195,13 +196,15 @@ struct songsView: View {
                             
                             
                             
-                            if height >= 81{
+                            if (isLargeDetent){
                                 ZStack {
                                     BackgroundView()
                                     VStack{
                                         HStack {
                                             Button(action:{
-                                                self.height = 80
+                                                isLargeDetent = false
+                                                height = 80
+                                                currentDetend = .height(height)
                                             }){
                                                 Image(systemName: "chevron.down")
                                                     .padding()
@@ -345,7 +348,9 @@ struct songsView: View {
                                             
                                             Spacer()
                                             Button(action: {
-                                                self.height = 80
+                                                isLargeDetent = false
+                                                height = 80
+                                                currentDetend = .height(height)
                                             }){
                                                 Image(systemName: "list.bullet")
                                                     .foregroundColor(.red)
@@ -359,6 +364,7 @@ struct songsView: View {
                                         
                                         
                                     }
+                                    
                                 }
                                 
                             }
@@ -380,12 +386,17 @@ struct songsView: View {
                 }
                 .background( LinearGradient(colors: [.purple, .accentColor], startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea())
-                .presentationDetents([.height(height), .large])
+                .presentationDetents([.height(height), .large], selection: $currentDetend)
                 .presentationCornerRadius(20)
                 .presentationBackground(.regularMaterial)
                 .presentationBackgroundInteraction(.enabled(upThrough: .large))
                 .interactiveDismissDisabled()
                 .bottomMaaskForSheet()
+                .onChange(of: currentDetend) { newDetent in
+                    
+                        isLargeDetent = (newDetent == .large)
+                    print(isLargeDetent)
+                }
             }
             
                     

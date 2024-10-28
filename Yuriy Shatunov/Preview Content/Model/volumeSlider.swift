@@ -12,6 +12,7 @@ import AVKit
 
 //volume slider
 struct VolumeSliderView: UIViewRepresentable {
+    
     func makeUIView(context: Context) -> MPVolumeView {
         let volumeView = MPVolumeView()
         volumeView.showsVolumeSlider = true
@@ -22,6 +23,7 @@ struct VolumeSliderView: UIViewRepresentable {
     func updateUIView(_ uiView: MPVolumeView, context: Context) {
         
     }
+    
 }
 
 

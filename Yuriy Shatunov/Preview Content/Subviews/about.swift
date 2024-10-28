@@ -16,7 +16,7 @@ struct about: View {
             
             VStack {
                 Spacer()
-                Spacer()
+                
                 VStack{
                     Text("Music Player")
                     Text("Юрий Шатуров")

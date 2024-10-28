@@ -12,6 +12,7 @@ struct mainView: View {
         
             NavigationView{
                 ZStack {
+                    
                     TabView{
                         songsView(song: SongModel(name: "music1" ))
                             .tabItem{
@@ -25,13 +26,15 @@ struct mainView: View {
                         
                         about()
                             .tabItem{
-                                Image(systemName: "book.pages.fill")
                                 
-                                Text("About")
+                                Image(systemName: "gear")
+                                Text("list")
                             }
+                            
                         
                     }
-                    .background(.gray)
+                    
+                    
                     .ignoresSafeArea(.all)
                 }
                 
