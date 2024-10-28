@@ -186,10 +186,10 @@ struct songsView: View {
                                     
                                     .ignoresSafeArea()
                                     .listRowBackground(Color.clear)
-                                    .onTapGesture {
-                                        isLargeDetent = true
-                                        height = 770
-                                    }
+//                                    .onTapGesture {
+//                                        isLargeDetent = true
+//                                        height = 770
+//                                    }
                                 }
                             }
                           
@@ -391,7 +391,10 @@ struct songsView: View {
                 .presentationBackground(.regularMaterial)
                 .presentationBackgroundInteraction(.enabled(upThrough: .large))
                 .interactiveDismissDisabled()
+//
                 .bottomMaaskForSheet()
+                
+               
                 .onChange(of: currentDetend) { newDetent in
                     
                         isLargeDetent = (newDetent == .large)
