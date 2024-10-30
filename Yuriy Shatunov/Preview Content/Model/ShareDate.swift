@@ -6,13 +6,8 @@
 //
 
 import SwiftUI
+import Combine
 
-struct ShareDate: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    ShareDate()
+class SharedData: ObservableObject {
+    @Published var isToggled: Bool = false
 }

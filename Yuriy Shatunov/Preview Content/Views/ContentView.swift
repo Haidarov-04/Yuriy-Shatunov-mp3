@@ -23,6 +23,7 @@ struct ContentView: View {
                     
                     Splash()
                         .transition(.opacity)
+                        
                         .animation(.easeOut(duration: 1.5))
                         .onAppear{
                             

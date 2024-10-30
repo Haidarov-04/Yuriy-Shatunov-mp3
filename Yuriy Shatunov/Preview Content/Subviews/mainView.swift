@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct mainView: View {
+   
     var body: some View {
+        
+        
         
             NavigationView{
                 ZStack {
@@ -21,15 +24,22 @@ struct mainView: View {
                                 
                                 Text("Songs")
                             }
-                            .toolbarBackground(.visible, for: .tabBar)
-                        
+                            
+                                
+                                
+                                .toolbarBackground(.visible, for: .tabBar)
+                            
                         
                         about()
+                            
                             .tabItem{
                                 
                                 Image(systemName: "gear")
-                                Text("list")
+                                Text("About")
+                                    
                             }
+                            
+                            
                             
                         
                     }

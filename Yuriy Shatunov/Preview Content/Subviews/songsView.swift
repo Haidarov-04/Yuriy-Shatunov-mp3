@@ -29,13 +29,14 @@ struct songsView: View {
     @State var dur = true
     
     @State var currentDetend:PresentationDetent = .medium
-    @State private var isLargeDetent = false
+    @State  var isLargeDetent = false
    
 
     
     
 
     var body: some View {
+        GeometryReader{ geometry in
         NavigationStack{
             ZStack{
                 
@@ -108,223 +109,226 @@ struct songsView: View {
             
             .sheet(isPresented: $isPresented){
                 NavigationView{
-                   
-                        
+                    
+                    
                     ZStack {
-//                        BackgroundView()
-                        VStack{
+                        
+                        
                             
-                            HStack {
+                            
+                            VStack{
                                 
-                                if !isLargeDetent{
-                                    HStack{
-                                        Image("sh1")
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                            .cornerRadius(50)
-                                            .shadow(color: .blue, radius: 20)
-                                        
-                                        
-                                        VStack{
-                                            audioPlayer.songName()
-                                            
-                                        }
-                                        Spacer()
-                                        
-                                        
-                                        //                                            buttons()
-                                        HStack {
-                                            Button(action:{
-                                                audioPlayer.backSound()
-                                                
-                                                playing = true
-                                                
-                                            }){
-                                                
-                                                
-                                                Image(systemName: "backward")
-                                                    .shadow(color: .black, radius: 20)
-                                            }
-                                            
-                                            
-                                            
-                                            
-                                            
-                                            Button(action: {
-                                                
-                                                playing ? audioPlayer.stopSound() : audioPlayer.playCurrentTrack()
-                                                playing.toggle()
-                                            }) {
-                                                Image(systemName:  playing ? "pause" :"play")
-                                                    .shadow(color: .black, radius: 20)
-                                            }
-                                            
-                                            
-                                            
-                                            Button(action:{
-                                                audioPlayer.nextSound()
-                                                
-                                                
-                                                playing = true
-                                            }){
-                                                
-                                                Image(systemName: "forward")
-                                                    .shadow(color: .black, radius: 20)
-                                            }
-                                        }
-                                        .foregroundColor(.white)
-                                        
-                                        
-                                        
-                                        
-                                        VStack{
-                                            Text(audioPlayer.formatTime(audioPlayer.musicDuration-audioPlayer.musicCurrentTime))
-                                            
-                                        }
-                                        
-                                    }
+                                HStack {
                                     
-                                    .ignoresSafeArea()
-                                    .listRowBackground(Color.clear)
-//                                    .onTapGesture {
-//                                        isLargeDetent = true
-//                                        height = 770
-//                                    }
-                                }
-                            }
-                          
-                            
-                            
-                            
-                            if (isLargeDetent){
-                                ZStack {
-                                    BackgroundView()
-                                    VStack{
-                                        HStack {
-                                            Button(action:{
-                                                isLargeDetent = false
-                                                height = 80
-                                                currentDetend = .height(height)
-                                            }){
-                                                Image(systemName: "chevron.down")
-                                                    .padding()
-                                                
-                                            }
-                                            .frame(width: 40, height: 40, alignment: .topLeading)
-                                            Spacer()
-                                        }
-                                        
-                                        
-                                        
-                                        Image("sh1")
-                                            .resizable()
-                                            .frame(width: 200 , height: 200)
-                                            .cornerRadius(40)
-                                            .shadow(color: .black, radius: 20)
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        audioPlayer.songName()
-                                            .font(.largeTitle)
-                                        
-                                        Text("Юрий Шатунов")
-                                            .font(.title)
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        VStack {
+                                    if !isLargeDetent{
+                                        HStack{
+                                            Image("sh1")
+                                                .resizable()
+                                                .frame(width: 50, height: 50)
+                                                .cornerRadius(50)
+                                                .shadow(color: .blue, radius: 20)
+                                            
+                                            
                                             VStack{
-                                                HStack {
-                                                    Slider(value: Binding(
-                                                        get: {
-                                                            audioPlayer.musicCurrentTime
-                                                        },
-                                                        set: { (newValue) in
-                                                            audioPlayer.musicCurrentTime = newValue
-                                                            audioPlayer.player?.currentTime = newValue
-                                                        }
-                                                    ), in: 0...audioPlayer.musicDuration)
-                                                    .tint(.white)
-                                                    .cornerRadius(10)
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                    
-                                                }
-                                                
-                                                
-                                                
-                                                
-                                                HStack {
-                                                    Text(audioPlayer.formatTime(audioPlayer.musicCurrentTime))
-                                                    Spacer()
-                                                    Text(audioPlayer.formatTime(audioPlayer.musicDuration))
-                                                    
-                                                }
-                                                .foregroundColor(.white)
+                                                audioPlayer.songName()
                                                 
                                             }
+                                            Spacer()
+                                            
+                                            
+                                            //                                            buttons()
+                                            HStack {
+                                                Button(action:{
+                                                    audioPlayer.backSound()
+                                                    
+                                                    playing = true
+                                                    
+                                                }){
+                                                    
+                                                    
+                                                    Image(systemName: "backward")
+                                                        .shadow(color: .black, radius: 20)
+                                                }
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                Button(action: {
+                                                    
+                                                    playing ? audioPlayer.stopSound() : audioPlayer.playCurrentTrack()
+                                                    playing.toggle()
+                                                }) {
+                                                    Image(systemName:  playing ? "pause" :"play")
+                                                        .shadow(color: .black, radius: 20)
+                                                }
+                                                
+                                                
+                                                
+                                                Button(action:{
+                                                    audioPlayer.nextSound()
+                                                    
+                                                    
+                                                    playing = true
+                                                }){
+                                                    
+                                                    Image(systemName: "forward")
+                                                        .shadow(color: .black, radius: 20)
+                                                }
+                                            }
+                                            .foregroundColor(.white)
+                                            
+                                            
+                                            
+                                            
+                                            VStack{
+                                                Text(audioPlayer.formatTime(audioPlayer.musicDuration-audioPlayer.musicCurrentTime))
+                                                
+                                            }
+                                            
+                                        }
+                                        
+                                        .ignoresSafeArea()
+                                        .listRowBackground(Color.clear)
+                                        //                                    .onTapGesture {
+                                        //                                        isLargeDetent = true
+                                        //                                        height = 770
+                                        //                                    }
+                                    }
+                                }
+                                
+                                
+                                
+                                
+                                if (isLargeDetent){
+                                    ZStack {
+                                        BackgroundView()
+                                        VStack{
+//                                            HStack {
+//                                                Button(action:{
+//                                                    isLargeDetent = false
+//                                                    height = 80
+//                                                    currentDetend = .height(height)
+//                                                }){
+//                                                    Image(systemName: "chevron.down")
+//                                                        .padding()
+//                                                    
+//                                                }
+//                                                .frame(width: 40, height: 40, alignment: .topLeading)
+//                                                Spacer()
+//                                            }
+//                                            
+                                            
+                                            
+                                            Image("sh1")
+                                                .resizable()
+                                                .frame(width: geometry.size.width*0.6 , height: geometry.size.height*0.303)
+                                                .cornerRadius(40)
+                                                .shadow(color: .black, radius: 20)
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            audioPlayer.songName()
+                                                .font(.largeTitle)
+                                            
+                                            Text("Юрий Шатунов")
+                                                .font(.title)
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            VStack {
+                                                VStack{
+                                                    HStack {
+                                                        Slider(value: Binding(
+                                                            get: {
+                                                                audioPlayer.musicCurrentTime
+                                                            },
+                                                            set: { (newValue) in
+                                                                audioPlayer.musicCurrentTime = newValue
+                                                                audioPlayer.player?.currentTime = newValue
+                                                            }
+                                                        ), in: 0...audioPlayer.musicDuration)
+                                                        .tint(.white)
+                                                        .cornerRadius(10)
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    }
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    HStack {
+                                                        Text(audioPlayer.formatTime(audioPlayer.musicCurrentTime))
+                                                        Spacer()
+                                                        Text(audioPlayer.formatTime(audioPlayer.musicDuration))
+                                                        
+                                                    }
+                                                    .foregroundColor(.white)
+                                                    
+                                                }
+                                                .padding(.horizontal)
+                                            }
+                                            HStack {
+                                                
+                                                Button(action:{
+                                                    audioPlayer.backSound()
+                                                    
+                                                    playing = true
+                                                }){
+                                                    Image(systemName: "backward.fill")
+                                                        .foregroundColor(.white)
+                                                        .font(.largeTitle)
+                                                        .shadow(color: .black, radius: 20)
+                                                }
+                                                
+                                                Spacer()
+                                                Button(action: {
+                                                    playing ? audioPlayer.stopSound() : audioPlayer.playCurrentTrack()
+                                                    playing.toggle()
+                                                    
+                                                    
+                                                }) {
+                                                    Image(systemName:  playing ? "pause.fill" :"play.fill")
+                                                        .foregroundColor(.white)
+                                                        .font(.largeTitle)
+                                                        .shadow(color: .black, radius: 20)
+                                                }
+                                                
+                                                Spacer()
+                                                
+                                                Button(action:{
+                                                    audioPlayer.nextSound()
+                                                    
+                                                    
+                                                    playing = true
+                                                    
+                                                }){
+                                                    Image(systemName: "forward.fill")
+                                                        .foregroundColor(.white)
+                                                        .font(.largeTitle)
+                                                        .shadow(color: .black, radius: 20)
+                                                }.onTapGesture {
+                                                    
+                                                }
+                                                
+                                            }
+                                            
                                             .padding()
-                                        }
-                                        HStack {
                                             
-                                            Button(action:{
-                                                audioPlayer.backSound()
-                                                
-                                                playing = true
-                                            }){
-                                                Image(systemName: "backward.fill")
-                                                    .foregroundColor(.white)
-                                                    .font(.largeTitle)
-                                                    .shadow(color: .black, radius: 20)
-                                            }
                                             
-                                            Spacer()
-                                            Button(action: {
-                                                playing ? audioPlayer.stopSound() : audioPlayer.playCurrentTrack()
-                                                playing.toggle()
-                                                
-                                                
-                                            }) {
-                                                Image(systemName:  playing ? "pause.fill" :"play.fill")
-                                                    .foregroundColor(.white)
-                                                    .font(.largeTitle)
-                                                    .shadow(color: .black, radius: 20)
-                                            }
                                             
-                                            Spacer()
                                             
-                                            Button(action:{
-                                                audioPlayer.nextSound()
-                                                
-                                                
-                                                playing = true
-                                                
-                                            }){
-                                                Image(systemName: "forward.fill")
-                                                    .foregroundColor(.white)
-                                                    .font(.largeTitle)
-                                                    .shadow(color: .black, radius: 20)
-                                            }.onTapGesture {
-                                                
-                                            }
                                             
-                                        }
-                                        
-                                        .padding()
-                                        
-                                        
-                                        
-                                        
-                                        
                                             HStack {
                                                 
                                                 VolumeSliderView()
@@ -334,71 +338,75 @@ struct songsView: View {
                                                     .cornerRadius(10)
                                             }
                                             
-                                           
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        HStack {
-                                            RouteButtonView()
-                                                .frame(width: 50, height: 50)
-                                                .padding(.horizontal)
-                                                .cornerRadius(10)
                                             
-                                            Spacer()
-                                            Button(action: {
-                                                isLargeDetent = false
-                                                height = 80
-                                                currentDetend = .height(height)
-                                            }){
-                                                Image(systemName: "list.bullet")
-                                                    .foregroundColor(.red)
-                                                    .font(.system(size: 30))
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            HStack {
+                                                RouteButtonView()
+                                                    .frame(width: 50, height: 50)
                                                     .padding(.horizontal)
+                                                    .cornerRadius(10)
+                                                
+                                                Spacer()
+                                                Button(action: {
+                                                    isLargeDetent = false
+                                                    height = 80
+                                                    currentDetend = .height(height)
+                                                    
+                                                    
+                                                }){
+                                                    Image(systemName: "list.bullet")
+                                                        .foregroundColor(.red)
+                                                        .font(.system(size: 30))
+                                                        .padding(.horizontal)
+                                                    
+                                                }
                                                 
                                             }
                                             
+                                            
+                                            
                                         }
-                                        
-                                        
                                         
                                     }
                                     
                                 }
                                 
+                                
+                                
+                                Spacer()
                             }
                             
                             
                             
-                            Spacer()
+                            
+                            .padding()
                         }
                         
                         
                         
-                        .padding()
-                    }
-                                
-                                
-                                
-                                    
                         
-                }
-                .background( LinearGradient(colors: [.purple, .accentColor], startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea())
-                .presentationDetents([.height(height), .large], selection: $currentDetend)
-                .presentationCornerRadius(20)
-                .presentationBackground(.regularMaterial)
-                .presentationBackgroundInteraction(.enabled(upThrough: .large))
-                .interactiveDismissDisabled()
-//
-                .bottomMaaskForSheet()
-                
-               
-                .onChange(of: currentDetend) { newDetent in
+                        
+                    }
+                    .background( LinearGradient(colors: [.purple, .accentColor], startPoint: .top, endPoint: .bottom)
+                        .ignoresSafeArea())
+                    .presentationDetents([.height(height), .large], selection: $currentDetend)
+                    .presentationCornerRadius(20)
+                    .presentationBackground(.regularMaterial)
+                    .presentationBackgroundInteraction(.enabled(upThrough: .large))
+                    .interactiveDismissDisabled()
+                    //
+                    .bottomMaaskForSheet()
                     
+                    
+                    .onChange(of: currentDetend) { newDetent in
+                        
                         isLargeDetent = (newDetent == .large)
-                    print(isLargeDetent)
+                        print(isLargeDetent)
+                    }
                 }
             }
             
