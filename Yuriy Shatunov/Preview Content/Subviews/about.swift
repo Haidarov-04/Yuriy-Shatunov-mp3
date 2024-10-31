@@ -26,7 +26,18 @@ struct about: View {
                     .foregroundColor(.white)
                 Spacer()
                 Spacer()
-                Spacer()
+                VStack{
+                    
+                    
+                    HStack {
+                        
+                        Image("n_logo")
+                            .resizable()
+                            .frame(width: 60, height: 60)
+//                            .padding(.horizontal)
+                    }
+                    
+                }
                 Text("Haidarov's Project")
                 Spacer()
                     
