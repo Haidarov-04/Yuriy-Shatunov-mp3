@@ -6,27 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		04F73B292CC0155E00279310 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04F73B102CC0155B00279310 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04F73B172CC0155B00279310;
-			remoteInfo = "Yuriy Shatunov";
-		};
-		04F73B332CC0155E00279310 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04F73B102CC0155B00279310 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04F73B172CC0155B00279310;
-			remoteInfo = "Yuriy Shatunov";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		04F73B182CC0155B00279310 /* Yuriy Shatunov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yuriy Shatunov.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		04F73B282CC0155E00279310 /* Yuriy ShatunovTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Yuriy ShatunovTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		04F73B322CC0155E00279310 /* Yuriy ShatunovUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Yuriy ShatunovUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -35,34 +16,10 @@
 			path = "Yuriy Shatunov";
 			sourceTree = "<group>";
 		};
-		04F73B2B2CC0155E00279310 /* Yuriy ShatunovTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Yuriy ShatunovTests";
-			sourceTree = "<group>";
-		};
-		04F73B352CC0155E00279310 /* Yuriy ShatunovUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Yuriy ShatunovUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		04F73B152CC0155B00279310 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04F73B252CC0155E00279310 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04F73B2F2CC0155E00279310 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,8 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				04F73B1A2CC0155B00279310 /* Yuriy Shatunov */,
-				04F73B2B2CC0155E00279310 /* Yuriy ShatunovTests */,
-				04F73B352CC0155E00279310 /* Yuriy ShatunovUITests */,
 				04F73B192CC0155B00279310 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,8 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				04F73B182CC0155B00279310 /* Yuriy Shatunov.app */,
-				04F73B282CC0155E00279310 /* Yuriy ShatunovTests.xctest */,
-				04F73B322CC0155E00279310 /* Yuriy ShatunovUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,52 +70,6 @@
 			productReference = 04F73B182CC0155B00279310 /* Yuriy Shatunov.app */;
 			productType = "com.apple.product-type.application";
 		};
-		04F73B272CC0155E00279310 /* Yuriy ShatunovTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04F73B3F2CC0155E00279310 /* Build configuration list for PBXNativeTarget "Yuriy ShatunovTests" */;
-			buildPhases = (
-				04F73B242CC0155E00279310 /* Sources */,
-				04F73B252CC0155E00279310 /* Frameworks */,
-				04F73B262CC0155E00279310 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				04F73B2A2CC0155E00279310 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				04F73B2B2CC0155E00279310 /* Yuriy ShatunovTests */,
-			);
-			name = "Yuriy ShatunovTests";
-			packageProductDependencies = (
-			);
-			productName = "Yuriy ShatunovTests";
-			productReference = 04F73B282CC0155E00279310 /* Yuriy ShatunovTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		04F73B312CC0155E00279310 /* Yuriy ShatunovUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04F73B422CC0155E00279310 /* Build configuration list for PBXNativeTarget "Yuriy ShatunovUITests" */;
-			buildPhases = (
-				04F73B2E2CC0155E00279310 /* Sources */,
-				04F73B2F2CC0155E00279310 /* Frameworks */,
-				04F73B302CC0155E00279310 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				04F73B342CC0155E00279310 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				04F73B352CC0155E00279310 /* Yuriy ShatunovUITests */,
-			);
-			name = "Yuriy ShatunovUITests";
-			packageProductDependencies = (
-			);
-			productName = "Yuriy ShatunovUITests";
-			productReference = 04F73B322CC0155E00279310 /* Yuriy ShatunovUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -175,14 +82,6 @@
 				TargetAttributes = {
 					04F73B172CC0155B00279310 = {
 						CreatedOnToolsVersion = 16.0;
-					};
-					04F73B272CC0155E00279310 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 04F73B172CC0155B00279310;
-					};
-					04F73B312CC0155E00279310 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 04F73B172CC0155B00279310;
 					};
 				};
 			};
@@ -201,28 +100,12 @@
 			projectRoot = "";
 			targets = (
 				04F73B172CC0155B00279310 /* Yuriy Shatunov */,
-				04F73B272CC0155E00279310 /* Yuriy ShatunovTests */,
-				04F73B312CC0155E00279310 /* Yuriy ShatunovUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		04F73B162CC0155B00279310 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04F73B262CC0155E00279310 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04F73B302CC0155E00279310 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,34 +122,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		04F73B242CC0155E00279310 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04F73B2E2CC0155E00279310 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		04F73B2A2CC0155E00279310 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04F73B172CC0155B00279310 /* Yuriy Shatunov */;
-			targetProxy = 04F73B292CC0155E00279310 /* PBXContainerItemProxy */;
-		};
-		04F73B342CC0155E00279310 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04F73B172CC0155B00279310 /* Yuriy Shatunov */;
-			targetProxy = 04F73B332CC0155E00279310 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		04F73B3A2CC0155E00279310 /* Debug */ = {
@@ -452,78 +308,6 @@
 			};
 			name = Release;
 		};
-		04F73B402CC0155E00279310 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QGM7999C9H;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Haidarov.Yuriy-ShatunovTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yuriy Shatunov.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Yuriy Shatunov";
-			};
-			name = Debug;
-		};
-		04F73B412CC0155E00279310 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QGM7999C9H;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Haidarov.Yuriy-ShatunovTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yuriy Shatunov.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Yuriy Shatunov";
-			};
-			name = Release;
-		};
-		04F73B432CC0155E00279310 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QGM7999C9H;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Haidarov.Yuriy-ShatunovUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Yuriy Shatunov";
-			};
-			name = Debug;
-		};
-		04F73B442CC0155E00279310 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QGM7999C9H;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Haidarov.Yuriy-ShatunovUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Yuriy Shatunov";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -541,24 +325,6 @@
 			buildConfigurations = (
 				04F73B3D2CC0155E00279310 /* Debug */,
 				04F73B3E2CC0155E00279310 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		04F73B3F2CC0155E00279310 /* Build configuration list for PBXNativeTarget "Yuriy ShatunovTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04F73B402CC0155E00279310 /* Debug */,
-				04F73B412CC0155E00279310 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		04F73B422CC0155E00279310 /* Build configuration list for PBXNativeTarget "Yuriy ShatunovUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04F73B432CC0155E00279310 /* Debug */,
-				04F73B442CC0155E00279310 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

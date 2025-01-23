@@ -12,12 +12,9 @@ import AVFoundation
 
 
 class ViewModel: ObservableObject {
-    
-    
     @Published var songs: [SongModel] = [
         SongModel(
             name: "Седая Ночь"
-          
         ),
         SongModel(
             name: "Детство"
@@ -58,11 +55,7 @@ class ViewModel: ObservableObject {
         SongModel(
             name: "Спасибо Тебе"
           
-        ),
-        
-     
-        
-        
+        ),  
     ]
     
 }

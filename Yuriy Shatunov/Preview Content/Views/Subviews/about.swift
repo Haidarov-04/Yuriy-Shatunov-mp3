@@ -10,7 +10,6 @@ import SwiftUI
 struct about: View {
     var body: some View {
         ZStack {
-            
             LinearGradient(colors: [.purple, .orange], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
@@ -25,20 +24,6 @@ struct about: View {
                     .padding()
                     .foregroundColor(.white)
                 Spacer()
-                Spacer()
-                VStack{
-                    
-                    
-                    HStack {
-                        
-                        Image("n_logo")
-                            .resizable()
-                            .frame(width: 60, height: 60)
-//                            .padding(.horizontal)
-                    }
-                    
-                }
-                Text("Haidarov's Project")
                 Spacer()
                     
             }

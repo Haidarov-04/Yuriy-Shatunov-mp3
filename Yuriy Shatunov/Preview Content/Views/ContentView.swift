@@ -9,18 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var splash = true
-    
-
-    
     var body: some View {
         
         NavigationView{
-            
-            
             if splash{
                 ZStack{
-                    
-                    
                     Splash()
                         .transition(.opacity)
                         
@@ -35,29 +28,15 @@ struct ContentView: View {
                         .asyncAfter(deadline: .now() + 5){
                             withAnimation{
                                 self.splash = false
-                                
-                                
                             }
                         }
-                   
                 }
-                
             }else{
                 VStack{
                     mainView()
                 }
-                
-                
             }
-            
-            
-            
-            
-            
-            
-            
         }
-        
         .navigationBarBackButtonHidden(true)
     }
 }

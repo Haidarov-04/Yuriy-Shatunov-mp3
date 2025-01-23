@@ -37,19 +37,6 @@ struct Splash: View {
                     
                     
                 }
-                VStack{
-                    Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        Image("n_logo")
-                            .resizable()
-                            .frame(width: 60, height: 60, alignment: .bottomLeading)
-                            .padding(.horizontal)
-                    }
-                    
-                }.frame(width: geometry.size.width, height: geometry.size.height)
-                
                 
                 
             }
