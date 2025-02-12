@@ -57,8 +57,10 @@ struct songsView: View{
                     .listStyle(.plain)
                     .padding(.bottom, 70)
                     .onAppear{
-                        audioPlayer.durationMusic()
-                        dur = false
+                        if !playing {
+                            audioPlayer.durationMusic()
+                            dur = false
+                        }
                     }
                 }
                 .sheet(isPresented: $isPresented){
