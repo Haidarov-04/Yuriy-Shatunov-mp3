@@ -51,11 +51,6 @@ class ViewModel: ObservableObject {
             name: "Спасибо Тебе"
           
         ),
-
-        SongModel(
-            name: "Спасибо Тебе"
-          
-        ),  
     ]
     
 }

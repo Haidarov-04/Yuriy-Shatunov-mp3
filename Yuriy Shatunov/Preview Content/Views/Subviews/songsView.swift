@@ -16,59 +16,54 @@ struct songsView: View{
     @State var height: CGFloat = 80
     @ObservedObject var audioPlayer = AudioPlayer()
     @State var playing = false
-    let song: SongModel
     @State var currentSong = "Седая ночь"
     @State var dur = true
-    @State var currentDetend:PresentationDetent = .medium
+    @Binding var currentDetend:PresentationDetent
     @State  var isLargeDetent = false
     var body: some View {
         GeometryReader{ geometry in
-        NavigationStack{
-            ZStack{
-                Image("sh5")
-                    .resizable()
-                    .ignoresSafeArea()
-                    .blur(radius: 30)
-                
-                        LinearGradient(colors: [.accentColor, .accentColor], startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
-                    .opacity(0.4)
-                ScrollView{
-                    ForEach(audioPlayer.soundFiles.songs.indices, id: \.self) { i in
-                        HStack{
-                            SongCell(song: audioPlayer.soundFiles.songs[i])
-                                .onTapGesture {
-                                    isPresented = true
-                                    audioPlayer.playSound(named: audioPlayer.soundFiles.songs[i].name)
+            NavigationStack{
+                ZStack{
+                    Image("sh5")
+                        .resizable()
+                        .ignoresSafeArea()
+                        .blur(radius: 30)
+                    
+                    LinearGradient(colors: [.accentColor, .accentColor], startPoint: .top, endPoint: .bottom)
+                        .ignoresSafeArea()
+                        .opacity(0.4)
+                    ScrollView{
+                        ForEach(audioPlayer.soundFiles.songs.indices, id: \.self) { i in
+                            HStack{
+                                SongCell(song: audioPlayer.soundFiles.songs[i])
+                                    .onTapGesture {
+                                        isPresented = true
+                                        audioPlayer.playSound(named: audioPlayer.soundFiles.songs[i].name)
                                         audioPlayer.currentTrackIndex = i
-                                    playing = true
-                                    currentSong = audioPlayer.soundFiles.songs[i].name
-                                    isPresented = true
-                                }
-                        }
-                        .padding()
-                        .overlay(
-                                  Rectangle()
-                                      .frame(height: 2)
+                                        playing = true
+                                        currentSong = audioPlayer.soundFiles.songs[i].name
+                                    }
+                            }
+                            .padding()
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 2)
                                     .foregroundColor(.gray.opacity(0.4))
-                                      .padding(.top, 50),
-                                  alignment: .bottom
-                              )
+                                    .padding(.top, 50),
+                                alignment: .bottom
+                            )
+                        }
                     }
-                    if dur{
-                        VStack{
-                        }
-                        .onAppear{
-                            audioPlayer.durationMusic()
-                            dur = false
-                        }
+                    .listStyle(.plain)
+                    .padding(.bottom, 70)
+                    .onAppear{
+                        audioPlayer.durationMusic()
+                        dur = false
                     }
                 }
-                .listStyle(.plain)
-            }
-            .sheet(isPresented: $isPresented){
-                NavigationView{
-                    ZStack {
+                .sheet(isPresented: $isPresented){
+                    NavigationView{
+                        ZStack {
                             VStack{
                                 HStack {
                                     if !isLargeDetent{
@@ -85,23 +80,20 @@ struct songsView: View{
                                             Spacer()
                                             HStack {
                                                 Button(action:{
-                                                    audioPlayer.backSound()
-                                                    playing = true
+                                                    perviousSound()
                                                     
                                                 }){
                                                     Image(systemName: "backward")
                                                         .shadow(color: .black, radius: 20)
                                                 }
                                                 Button(action: {
-                                                    playing ? audioPlayer.stopSound() : audioPlayer.playCurrentTrack()
-                                                    playing.toggle()
+                                                    playStopSound()
                                                 }) {
                                                     Image(systemName:  playing ? "pause" :"play")
                                                         .shadow(color: .black, radius: 20)
                                                 }
                                                 Button(action:{
-                                                    audioPlayer.nextSound()
-                                                    playing = true
+                                                    nextSound()
                                                 }){
                                                     Image(systemName: "forward")
                                                         .shadow(color: .black, radius: 20)
@@ -157,9 +149,7 @@ struct songsView: View{
                                             }
                                             HStack {
                                                 Button(action:{
-                                                    audioPlayer.backSound()
-                                                    
-                                                    playing = true
+                                                    perviousSound()
                                                 }){
                                                     Image(systemName: "backward.fill")
                                                         .foregroundColor(.white)
@@ -168,8 +158,7 @@ struct songsView: View{
                                                 }
                                                 Spacer()
                                                 Button(action: {
-                                                    playing ? audioPlayer.stopSound() : audioPlayer.playCurrentTrack()
-                                                    playing.toggle()
+                                                    playStopSound()
                                                 }) {
                                                     Image(systemName:  playing ? "pause.fill" :"play.fill")
                                                         .foregroundColor(.white)
@@ -177,17 +166,13 @@ struct songsView: View{
                                                         .shadow(color: .black, radius: 20)
                                                 }
                                                 Spacer()
-                                                
                                                 Button(action:{
-                                                    audioPlayer.nextSound()
-                                                    playing = true
+                                                    nextSound()
                                                 }){
                                                     Image(systemName: "forward.fill")
                                                         .foregroundColor(.white)
                                                         .font(.largeTitle)
                                                         .shadow(color: .black, radius: 20)
-                                                }.onTapGesture {
-                                                    
                                                 }
                                             }
                                             .padding()
@@ -202,7 +187,6 @@ struct songsView: View{
                                                     .frame(width: 50, height: 50)
                                                     .padding(.horizontal)
                                                     .cornerRadius(10)
-                                                
                                                 Spacer()
                                                 Button(action: {
                                                     isLargeDetent = false
@@ -216,9 +200,7 @@ struct songsView: View{
                                                 }
                                             }
                                         }
-                                        
                                     }
-                                    
                                 }
                                 Spacer()
                             }
@@ -235,25 +217,34 @@ struct songsView: View{
                     .bottomMaaskForSheet()
                     .onChange(of: currentDetend) { newDetent in
                         isLargeDetent = (newDetent == .large)
-                        print(isLargeDetent)
                     }
                 }
             }
         }
-            .toolbar{
-                ToolbarItem(placement: .topBarTrailing) {
-                    Text("Shatunov")
-                        .font(.largeTitle)
-                }
+        .toolbar{
+            ToolbarItem(placement: .topBarTrailing) {
+                Text("Shatunov")
+                    .font(.largeTitle)
             }
+        }
     }
     
-
+    func nextSound(){
+        audioPlayer.nextSound()
+        playing = true
+    }
+    
+    func perviousSound(){
+        audioPlayer.backSound()
+        playing = true
+    }
+    
+    func playStopSound(){
+        playing ? audioPlayer.stopSound() : audioPlayer.playCurrentTrack()
+        playing.toggle()
+    } 
 }
 
-#Preview {
-    songsView(song: SongModel(name: "music1"))
-}
 
 
 

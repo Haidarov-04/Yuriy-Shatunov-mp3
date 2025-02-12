@@ -16,12 +16,9 @@ struct ContentView: View {
                 ZStack{
                     Splash()
                         .transition(.opacity)
-                        
                         .animation(.easeOut(duration: 1.5))
                         .onAppear{
-                            
                         }
-                    
                 }
                 .onAppear{
                     DispatchQueue.main
@@ -46,20 +43,20 @@ struct ContentView: View {
 }
 
 
-        
-        
-        
-        
-        
-        
-        
 
 
 
 
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
 
 
 
